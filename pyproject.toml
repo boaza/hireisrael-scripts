@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "post-jobs"
+version = "0.1.0"
+description = ""
+authors = ["Boaz Aizenshtark <boaz@tensor-tech.co.il>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic-settings = "^2.2.1"
+requests = "^2.31.0"
+parsel = "^1.9.0"
+lxml = "^5.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
