@@ -3,7 +3,7 @@ import logging
 from argparse import ArgumentParser
 from pathlib import Path
 
-from main.core import clear_all_attributes
+from main.linkatch.utilities import nbn_description_to_linkatch
 from main.nbn import NbnScraper
 
 logging.basicConfig(format="[%(levelname)s] %(asctime)s %(message)s", level=logging.INFO)
@@ -17,7 +17,7 @@ def scrape_jobs(urls_file: str | Path, output_dir: str | Path):
     output_dir = Path(output_dir)
     for url in urls:
         job = scraper.scrape_job(url)
-        job['description'] = clear_all_attributes(job['description'])
+        job['description'] = nbn_description_to_linkatch(job['description'])
         with open(output_dir / f'{job["id"]}.json', 'wt') as f:
             json.dump(job, f, indent=2)
 

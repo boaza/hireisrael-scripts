@@ -116,12 +116,10 @@ class NbnScraper:
                      if (job_type_str := item.text_content().strip().lower()) in NbnScraper._job_type_map]
         return job_types[0] if job_types else None
 
-    # < meta
-    # property = "og:url"
-    # content = "https://www.nbn.org.il/jobboard/job/client-services-coordinator/" >
 
 if __name__ == '__main__':
-    path = r'C:\dev\hireisrael\post-jobs\tests\data\nbn-job.html'
+    from pathlib import Path
+    path = Path(__file__).parents[2] / r'tests\data\nbn-job.html'
     tree = html.parse(path)
     title = NbnScraper._extract_job_title(tree)
     description = NbnScraper._extract_job_description(tree)

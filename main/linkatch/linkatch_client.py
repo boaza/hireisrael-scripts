@@ -6,7 +6,7 @@ import base64
 
 import logging
 
-from main.linkatch.types import LinkatchJobModel
+from main.linkatch.core import LinkatchJobModel
 from main.core.enums import JobType
 
 logger = logging.getLogger(__name__)
