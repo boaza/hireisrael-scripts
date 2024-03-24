@@ -8,4 +8,4 @@ class LinkatchSettings(BaseSettings):
     password: SecretStr = '****'
 
     # Settings can be overriden using environment variables.
-    model_config = SettingsConfigDict(env_file='.env', env_nested_delimiter='__', env_prefix='LINKATCH')
+    model_config = SettingsConfigDict(env_file='.env', env_nested_delimiter='__', env_prefix='LINKATCH_')

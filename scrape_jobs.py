@@ -3,7 +3,6 @@ import logging
 from argparse import ArgumentParser
 from pathlib import Path
 
-from main.linkatch.utilities import nbn_description_to_linkatch
 from main.nbn import NbnScraper
 
 logging.basicConfig(format="[%(levelname)s] %(asctime)s %(message)s", level=logging.INFO)
@@ -16,10 +15,12 @@ def scrape_jobs(urls_file: str | Path, output_dir: str | Path):
         urls = f.readlines()
     output_dir = Path(output_dir)
     for url in urls:
-        job = scraper.scrape_job(url)
-        job['description'] = nbn_description_to_linkatch(job['description'])
-        with open(output_dir / f'{job["id"]}.json', 'wt') as f:
-            json.dump(job, f, indent=2)
+        try:
+            job = scraper.scrape_job(url)
+            with open(output_dir / f'{job["id"]}.json', 'wt') as f:
+                json.dump(job, f, indent=2)
+        except Exception as e:
+            print('Failed scraping job - skipping')
 
 
 if __name__ == '__main__':
